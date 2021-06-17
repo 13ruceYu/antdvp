@@ -267,6 +267,23 @@ export const asyncRouterMap = [
             ]
           }
         ]
+      },
+
+      // test
+      {
+        path: '/test',
+        component: RouteView,
+        redirect: '/test/test1',
+        name: 'test',
+        meta: { title: 'menu.test', icon: 'experiment', keepAlive: true, permission: ['user'] },
+        children: [
+          {
+            path: '/test/test1',
+            name: 'test',
+            component: () => import('@/views/test/test'),
+            meta: { title: 'menu.test.test1', keepAlive: true, permission: ['user'] }
+          }
+        ]
       }
 
       // other
