@@ -21,14 +21,36 @@ import './permission' // permission control
 import './utils/filter' // global filter
 import './global.less' // global style
 
-Vue.config.productionTip = false
+import HighchartsVue from 'highcharts-vue'
+import Highcharts from 'highcharts'
+import stockInit from 'highcharts/modules/stock'
+import HighchartszhCN from '@/utils/highcharts-zh_CN.es6'
+
+stockInit(Highcharts)
+HighchartszhCN(Highcharts)
+
+Highcharts.setOptions({
+  global: {
+    useUTC: false
+  },
+  lang: {
+    months: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    weekdays: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+    shortMonths: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+  }
+})
+
+Vue.use(HighchartsVue)
 
 // mount axios to `Vue.$http` and `this.$http`
 Vue.use(VueAxios)
+
 // use pro-layout components
 Vue.component('pro-layout', ProLayout)
 Vue.component('page-container', PageHeaderWrapper)
 Vue.component('page-header-wrapper', PageHeaderWrapper)
+
+Vue.config.productionTip = false
 
 window.umi_plugin_ant_themeVar = themePluginConfig.theme
 
